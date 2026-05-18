@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  db:
+    build: .
+    container_name: mysql_proyecto_db
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - eval-net
+
+volumes:
+  db_data:
+
+networks:
+  eval-net:
+    external: true
